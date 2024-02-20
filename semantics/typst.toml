@@ -1,0 +1,7 @@
+[package]
+name = "semantics"
+version = "1.0.0"
+entrypoint = "semantics.typ"
+authors = ["Cheng XIN"]
+license = "Unlicense"
+description = "Semantics rule"

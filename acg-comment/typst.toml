@@ -1,0 +1,7 @@
+[package]
+name = "acg-comment"
+version = "1.0.0"
+entrypoint = "comment.typ"
+authors = ["Cheng XIN"]
+license = "Unlicense"
+description = "ACG comment, JUST FOR FUN"
