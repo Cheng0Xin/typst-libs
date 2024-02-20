@@ -1,5 +1,11 @@
-#let pm-comment(text) = stack(
+#let create-comment-img(img-src) = image(img-src, height: 1.5cm)
+#let create-comment(img-src, text-src) = stack(
   dir: ltr,
-  image("figure/pm.jpg", height: 1.5cm),
-  align(start+horizon, [#text])
+  create-comment-img(img-src),
+  align(start+horizon, [#text-src])
 )
+
+#let pm-comment(text) = create-comment("figure/pm.jpg", text)
+#let toothless-comment(text) = create-comment("figure/toothless.jpg", text)
+#let cat-comment(text) = create-comment("figure/ddm.jpg", text)
+
