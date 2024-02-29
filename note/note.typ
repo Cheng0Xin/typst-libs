@@ -46,7 +46,6 @@ font: spec-font, weight: "bold")[
   width: 100%,
   fill: color,
   inset: 5pt)[
-
     #align(left, text[
       #text(weight: "bold")[#cate #text(rgb("#D0104C"))[#refs]:] #name.
       #label(refs)
@@ -74,7 +73,8 @@ font: spec-font, weight: "bold")[
 /**
 * Showing link with hyperlink
 */
-#let ref(l) = link(l, text(rgb("#D0104C"))[*#l*])
+#let ref-link(l) = link(l, text(rgb("#D0104C"))[*#l*])
+#let rref(key) = text(rgb("#D0104C"))[*#key*]
 
 /**
 * For showing some important facts.
@@ -103,9 +103,9 @@ font: spec-font, weight: "bold")[
 /**
 * Heading, `show` rules
 */
-#let report(info, body) = {
+#let report(info, body, title_bar: none) = {
 
-  set heading(numbering: "i.1.1")
+  set heading(numbering: "1.1.1")
   set text(10pt, font: (body-font, chinese-font), fallback: true)
 
   set par(justify: true)
@@ -116,40 +116,51 @@ font: spec-font, weight: "bold")[
   )
 
   block(width: 100%,
-  fill: rgb("#DC9FB4"),
-  clip: true,
-  stroke: black,
-  radius: (
-    top-left: 5pt,
-    top-right: 5pt,
-    bottom-left: 5pt,
-    bottom-right: 5pt
-    ),
-    inset: 10pt)[
+    fill: rgb("#EDEAE7"),
+    clip: true,
+    // stroke: black,
+    // radius: (
+    //   top-left: 5pt,
+    //   top-right: 5pt,
+    //   bottom-left: 5pt,
+    //   bottom-right: 5pt
+    // ),
+    inset: 10pt
+    )[
 
-      #align(center, text(14pt, font: section-font)[*#info.title*])
-      #align(left, text(10pt, font: section-font)[
-        *Author:*
-        #if "author" in info [
-          #info.author
-          ] else [
-            Red Comet
-              ] \
-                *Date:*
-                #if "date" in info [
-                  #info.date.display()
-                  ] else [
-                    #datetime.today().display()
-              ] \
-                #if "keywords" in info [
-                  *Keywords:*
-                #info.keywords.join("; ")]
-      ])
+    #align(left, text(14pt, font: section-font)[*#info.title*])
+
+    #align(right, text(9pt, font: section-font)[
+      *written by*
+      #if "author" in info [
+        #info.author
+      ] else [
+        Cheng
+      ] *on*
+      #if "date" in info [
+        #info.date.display()
+      ] else [
+        #datetime.today().display()
+      ]
+    ])
+
+    #align(center+horizon, title_bar)
+  ]
+
+  /**
+  * Put keywords
+  */
+  if "keywords" in info [
+    #align(left, text(9pt, font: section-font)[
+      *Keywords:*
+      #info.keywords.join("; ")
+    ])
   ]
 
   /**
   * Outline
   */
+  line(length: 100%)
   outline()
   line(length: 100%)
   v(1.5cm)
