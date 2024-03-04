@@ -70,6 +70,14 @@ font: spec-font, weight: "bold")[
   body
 )
 
+#let proposition(name: none, refs: none, body) = thbox(
+  name: name,
+  color: rgb("#E493B3"),
+  cate: "Proposition",
+  refs: refs,
+  body
+)
+
 /**
 * Showing link with hyperlink
 */
