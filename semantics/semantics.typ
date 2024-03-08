@@ -13,7 +13,7 @@
   let label-size = if obj.keys().contains("label") {
     measure(obj.label, styles).width
   } else {
-    0pt
+    15pt
   }
   return (
     label: if obj.keys().contains("label") {obj.label} else {[]},
@@ -26,7 +26,7 @@
   let sum_result = result.fold(0pt, (acc, x) => { return acc + x.length })
   return (
     array: result,
-    length: sum_result + result.len() * 2pt,
+    length: sum_result + (result.len() - 1) * hspace-between-formula,
   )
 }
 
@@ -48,11 +48,11 @@
     stack(dir:ltr, spacing: hspace-between-formula, ..obj.array.map((x)=> generate(x, style)))
   } else if obj.keys().contains("up") {
     stack(dir:ttb, spacing: vspace-between-formula,
-      generate(obj.up, style),
+      align(center, generate(obj.up, style)),
       v(vspace-between-formula),
       linewithlabel(obj.length, obj.label, style),
       v(vspace-between-formula),
-      generate(obj.down, style),
+      align(center, generate(obj.down, style)),
     )
   }
 }
