@@ -4,6 +4,14 @@
 * Mail: claudexin@outlook.com
 */
 
+
+/**
+* Set up counters
+* */
+#let cthm = counter("Theorem")
+#let cdef = counter("Definition")
+#let cprop = counter("Proposition")
+
 /**
 * Fonts
 * */
@@ -42,17 +50,32 @@ font: spec-font, weight: "bold")[
 * Theorem-like box;
 * Just for reusing, not recommended for directly using.
 */
-#let thbox(name: none, color: gray, cate: "Theorem", refs: none, body) = block(
-  width: 100%,
-  fill: color,
-  inset: 5pt)[
-    #align(left, text[
-      #text(weight: "bold")[#cate #text(rgb("#D0104C"))[#refs]:] #name.
-      #label(refs)
-  ])
-  #body
+#let thbox(name: none, color: gray, cate: "Theorem", refs: none, body) = [
+  #block(
+    width: 100%,
+    fill: color,
+    inset: (x: 5pt, y: 5pt),
+    radius: 5pt,
+    breakable: true
+  )[
+    #align(left)[
+      #align(left, text(weight: "bold")[
+        #cate
+        #if refs != none {
+          [(#tt(refs)) ]
+        }
+        #text(rgb("#D0104C"))[#counter(cate).display()]:
+        #text(weight: "regular", size: 9pt)[#name.]
+      ])
+      // Body
+      #body
+      // Creat label
+      #figure([], kind: cate, supplement: cate)
+      #if refs != none { label(refs) }
+      #counter(cate).step()
+    ]
+  ]
 ]
-
 
 #let theorem(name: none, refs: none, body) = thbox(
   name: name,
@@ -77,6 +100,10 @@ font: spec-font, weight: "bold")[
   refs: refs,
   body
 )
+
+#let rdef(l) = ref(l, supplement: text(fill: maroon)[Def.])
+#let rthm(l) = ref(l, supplement: text(fill: maroon)[Thm.])
+#let rprop(l) = ref(l, supplement: text(fill: maroon)[Prop.])
 
 /**
 * Showing link with hyperlink
@@ -105,13 +132,26 @@ font: spec-font, weight: "bold")[
 /**
 * For showing paragraph
 */
-#let parat(name) = text(11pt, weight: "bold", font: section-font)[#sym.dagger #name]
+#let parat(name) = block(
+  fill: rgb("#B5C0D0"),
+  inset: 3pt,
+  outset: 3pt,
+  radius: 5pt,
+  align(center+horizon, text()[
+    #name
+  ])
+)
 
 
 /**
 * Heading, `show` rules
 */
 #let report(info, body, title_bar: none) = {
+  // Set up counter
+  cthm.update(1)
+  cdef.update(1)
+  cprop.update(1)
+
 
   set heading(numbering: "1.1.1")
   set text(10pt, font: (body-font, chinese-font), fallback: true)
@@ -248,11 +288,21 @@ font: spec-font, weight: "bold")[
   show heading.where(level: 1): it => [
     #set align(center)
     #set text(font: section-font, fallback: true)
-    #smallcaps(it)
+    #smallcaps(it.body)
   ]
   show heading.where(level: 2): it => [
     #set text(font: section-font, fallback: true)
     #text(weight: "bold", it)
+  ]
+  show heading.where(level: 3): it => [
+    #set text(font: section-font, fallback: true)
+    #text(weight: "semibold", it)
+  ]
+  show heading.where(level: 4): it => [
+    #set text(font: section-font, fallback: true)
+    #text(weight: "semibold")[
+      #sym.square.filled #it.body
+    ]
   ]
 
   /**
