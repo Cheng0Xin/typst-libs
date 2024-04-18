@@ -1,5 +1,5 @@
-#let vspace-between-formula = 2pt
-#let hspace-between-formula = 25pt
+#let vspace-between-formula = 4pt
+#let hspace-between-formula = 20pt
 
 #let cons-obj(obj, styles) = if type(obj) == content {
   let c-content = align(center + horizon)[#obj]
@@ -15,11 +15,13 @@
   } else {
     15pt
   }
+  let line-size = calc.max(up-content.length, down-content.length) + hspace-between-formula
   return (
     label: if obj.keys().contains("label") {obj.label} else {[]},
     up: up-content,
     down: down-content,
-    length: calc.max(up-content.length, down-content.length) + label-size
+    line-length: line-size,
+    length: line-size + label-size
   )
 } else if type(obj) == array {
   let result = obj.map((x) => cons-obj(x, styles))
@@ -50,7 +52,7 @@
     stack(dir:ttb, spacing: vspace-between-formula,
       align(center, generate(obj.up, style)),
       v(vspace-between-formula),
-      linewithlabel(obj.length, obj.label, style),
+      linewithlabel(obj.line-length, obj.label, style),
       v(vspace-between-formula),
       align(center, generate(obj.down, style)),
     )

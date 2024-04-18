@@ -18,7 +18,8 @@
 #let section-font = "Latin Modern Roman"
 #let body-font = "BlexMono Nerd Font Propo"
 #let spec-font = "DejaVuSansMono Nerd Font Mono"
-#let chinese-font = "Adobe Heiti Std"
+// #let chinese-font = "Adobe Heiti Std"
+#let chinese-font = "Source Han Serif SC"
 
 /**
 * bold text,
@@ -130,16 +131,25 @@ font: spec-font, weight: "bold")[
 ]
 
 /**
+* Commenting
+*/
+#let cmmt(msg) = text(blue, style: "italic")[
+  #msg
+]
+
+/**
 * For showing paragraph
 */
 #let parat(name) = block(
-  fill: rgb("#B5C0D0"),
+  // fill: rgb("#B5C0D0"),
   inset: 3pt,
-  outset: 3pt,
-  radius: 5pt,
-  align(center+horizon, text()[
-    #name
-  ])
+  // outset: 3pt,
+  // radius: 5pt,
+  stroke: (paint: blue, thickness: 0.5pt, dash: ("dot", 2pt, 4pt, 2pt)),
+  width: 100%
+  )[
+    #sym.smash #name
+  ]
 )
 
 
