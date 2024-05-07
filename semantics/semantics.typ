@@ -1,4 +1,4 @@
-#let vspace-between-formula = 4pt
+#let vspace-between-formula = 1.5pt
 #let hspace-between-formula = 20pt
 
 #let cons-obj(obj, styles) = if type(obj) == content {
