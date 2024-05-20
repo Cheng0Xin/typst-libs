@@ -1,8 +1,8 @@
-#let vspace-between-formula = 1.5pt
+#let vspace-between-formula = 5pt
 #let hspace-between-formula = 20pt
 
 #let cons-obj(obj, styles) = if type(obj) == content {
-  let c-content = align(center + horizon)[#obj]
+  let c-content = align(start+bottom)[#obj]
   return (
     text: c-content,
     length: measure(c-content, styles).width,
@@ -15,7 +15,8 @@
   } else {
     15pt
   }
-  let line-size = calc.max(up-content.length, down-content.length) + hspace-between-formula
+  // let line-size = calc.max(up-content.length, down-content.length) + hspace-between-formula
+  let line-size = calc.max(up-content.length, down-content.length)
   return (
     label: if obj.keys().contains("label") {obj.label} else {[]},
     up: up-content,
@@ -50,11 +51,11 @@
     stack(dir:ltr, spacing: hspace-between-formula, ..obj.array.map((x)=> generate(x, style)))
   } else if obj.keys().contains("up") {
     stack(dir:ttb, spacing: vspace-between-formula,
-      align(center, generate(obj.up, style)),
+      align(center+bottom, generate(obj.up, style)),
       v(vspace-between-formula),
       linewithlabel(obj.line-length, obj.label, style),
       v(vspace-between-formula),
-      align(center, generate(obj.down, style)),
+      align(center+bottom, generate(obj.down, style)),
     )
   }
 }
