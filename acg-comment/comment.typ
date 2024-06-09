@@ -13,5 +13,5 @@
 
 #let pm-comment(text) = create-comment("figure/pm.jpg", text)
 #let toothless-comment(text) = create-comment("figure/toothless.jpg", text)
-#let cat-comment(text) = create-comment("figure/ddm.jpg", text)
+#let cat-comment(text) = create-comment("figure/cat.png", text)
 

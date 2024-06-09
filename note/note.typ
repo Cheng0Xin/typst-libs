@@ -19,7 +19,8 @@
 #let body-font = "BlexMono Nerd Font Propo"
 #let spec-font = "DejaVuSansMono Nerd Font Mono"
 // #let chinese-font = "Adobe Heiti Std"
-#let chinese-font = "Source Han Serif SC"
+// #let chinese-font = "Source Han Serif SC"
+#let chinese-font = "Inziu Iosevka SC"
 
 /**
 * bold text,
@@ -140,18 +141,11 @@ font: spec-font, weight: "bold")[
 /**
 * For showing paragraph
 */
-#let parat(name) = block(
-  // fill: rgb("#B5C0D0"),
-  inset: 3pt,
-  // outset: 3pt,
-  // radius: 5pt,
-  stroke: (paint: blue, thickness: 0.5pt, dash: ("dot", 2pt, 4pt, 2pt)),
-  width: 100%
-  )[
-    #sym.smash #name
+#let parat(name) = align(left)[
+  #text(weight: "bold", fill: rgb("#7A003F"), size: 11pt)[
+    #sym.square #name
   ]
-)
-
+]
 
 /**
 * Heading, `show` rules
