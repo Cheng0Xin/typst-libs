@@ -20,7 +20,7 @@
 #let spec-font = "DejaVuSansMono Nerd Font Mono"
 // #let chinese-font = "Adobe Heiti Std"
 // #let chinese-font = "Source Han Serif SC"
-#let chinese-font = "Inziu Iosevka SC"
+#let chinese-font = "Noto Sans SC"
 
 /**
 * bold text,
@@ -66,7 +66,7 @@ font: spec-font, weight: "bold")[
         #if refs != none {
           [(#tt(refs)) ]
         }
-        #text(rgb("#D0104C"))[#counter(cate).display()]:
+        #text(rgb("#D0104C"))[#context(counter(cate).display())]:
         #text(weight: "regular", size: 9pt)[#name.]
       ])
       // Body
