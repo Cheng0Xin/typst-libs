@@ -150,7 +150,7 @@ font: spec-font, weight: "bold")[
 /**
 * Heading, `show` rules
 */
-#let report(info, body, title_bar: none) = {
+#let report(info, body, title_bar: none, description: none) = {
   // Set up counter
   cthm.update(1)
   cdef.update(1)
@@ -208,6 +208,9 @@ font: spec-font, weight: "bold")[
       #info.keywords.join("; ")
     ])
   ]
+
+  description
+  pagebreak()
 
   /**
   * Outline
