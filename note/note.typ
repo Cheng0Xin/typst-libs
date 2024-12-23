@@ -52,7 +52,7 @@ font: spec-font, weight: "bold")[
 * Theorem-like box;
 * Just for reusing, not recommended for directly using.
 */
-#let thbox(name: none, color: gray, cate: "Theorem", refs: none, body) = [
+#let thbox(name: none, color: gray, cate: "Theorem", supplement: "Th.", refs: none, body) = [
   #block(
     width: 100%,
     fill: color,
@@ -72,7 +72,7 @@ font: spec-font, weight: "bold")[
       // Body
       #body
       // Creat label
-      #figure([], kind: cate, supplement: cate)
+      #figure([], kind: cate, supplement: supplement)
       #if refs != none { label(refs) }
       #counter(cate).step()
     ]
@@ -83,6 +83,7 @@ font: spec-font, weight: "bold")[
   name: name,
   color: luma(230),
   cate: "Theorem",
+  supplement: "Th.",
   refs: refs,
   body
 )
@@ -91,6 +92,7 @@ font: spec-font, weight: "bold")[
   name: name,
   color: rgb("#91B493"),
   cate: "Definition",
+  supplement: "Def.",
   refs: refs,
   body
 )
@@ -99,6 +101,7 @@ font: spec-font, weight: "bold")[
   name: name,
   color: rgb("#E493B3"),
   cate: "Proposition",
+  supplement: "Prop.",
   refs: refs,
   body
 )
@@ -150,7 +153,7 @@ font: spec-font, weight: "bold")[
 /**
 * Heading, `show` rules
 */
-#let report(info, body, title_bar: none, description: none) = {
+#let report(info, body, title_bar: none, description: none, allow_break: false) = {
   // Set up counter
   cthm.update(1)
   cdef.update(1)
@@ -210,15 +213,18 @@ font: spec-font, weight: "bold")[
   ]
 
   description
-  pagebreak()
-
+  if allow_break {
+    pagebreak()
+  }
   /**
   * Outline
   */
   line(length: 100%)
   outline()
   line(length: 100%)
-  v(1.5cm)
+  if allow_break {
+    pagebreak()
+  }
 
   /**
   * Programming Language Syntax Highlight
@@ -247,7 +253,6 @@ font: spec-font, weight: "bold")[
         #it.text
       ]
   }
-
 
   // Display inline code in a small box
   // that retains the correct baseline.
@@ -282,11 +287,12 @@ font: spec-font, weight: "bold")[
   * Emph and strong
   */
   show emph: it => {
-    text(rgb("#42602D"), weight: "bold", it.body)
+    // text(rgb("#42602D"), weight: "bold", it.body)
+    text(rgb("#42602D"), style:"italic", it.body)
   }
 
   show strong: it => {
-    text(rgb("#8E354A"), weight: "bold", it.body)
+    text(rgb("#8E354A"), it.body)
   }
 
   /**
@@ -294,16 +300,18 @@ font: spec-font, weight: "bold")[
   */
   show heading.where(level: 1): it => [
     #set align(center)
-    #set text(font: section-font, fallback: true)
-    #smallcaps(it.body)
+    #set text(20pt, font: section-font, fallback: true)
+    #line(stroke: 1pt, length: 100%) #smallcaps(it.body)
+    #v(1.5cm)
   ]
   show heading.where(level: 2): it => [
-    #set text(font: section-font, fallback: true)
+    #set text(15pt, font: section-font, fallback: true)
     #text(weight: "bold", it)
   ]
   show heading.where(level: 3): it => [
-    #set text(font: section-font, fallback: true)
+    #set text(13pt, font: section-font, fallback: true)
     #text(weight: "semibold", it)
+    #v(0.2cm)
   ]
   show heading.where(level: 4): it => [
     #set text(font: section-font, fallback: true)
