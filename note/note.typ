@@ -17,12 +17,12 @@
 * Fonts
 * */
 #let section-font = "Latin Modern Roman"
-#let body-font = "BlexMono Nerd Font Propo"
-#let spec-font = "DejaVuSansMono Nerd Font Mono"
+#let body-font = "JetBrainsMono Nerd Font Propo"
+#let spec-font = "DejaVuSansM Nerd Font Propo"
 // #let chinese-font = "Adobe Heiti Std"
 // #let chinese-font = "Source Han Serif SC"
-#let chinese-font = "Noto Sans SC"
-// #let chinese-font = "Maple Mono NF CN"
+// #let chinese-font = "Noto Sans SC"
+#let chinese-font = "Maple Mono NF CN"
 
 /**
 * bold text,
