@@ -11,6 +11,7 @@
 #let cthm = counter("Theorem")
 #let cdef = counter("Definition")
 #let cprop = counter("Proposition")
+#let crmk = counter("Remark")
 
 /**
 * Fonts
@@ -21,6 +22,7 @@
 // #let chinese-font = "Adobe Heiti Std"
 // #let chinese-font = "Source Han Serif SC"
 #let chinese-font = "Noto Sans SC"
+// #let chinese-font = "Maple Mono NF CN"
 
 /**
 * bold text,
@@ -106,6 +108,16 @@ font: spec-font, weight: "bold")[
   body
 )
 
+
+#let remark(name: none, refs: none, body) = thbox(
+  name: name,
+  color: rgb("#E493B3"),
+  cate: "Remark",
+  supplement: "Remark",
+  refs: refs,
+  body
+)
+
 #let rdef(l) = ref(l, supplement: text(fill: maroon)[Def.])
 #let rthm(l) = ref(l, supplement: text(fill: maroon)[Thm.])
 #let rprop(l) = ref(l, supplement: text(fill: maroon)[Prop.])
@@ -158,10 +170,17 @@ font: spec-font, weight: "bold")[
   cthm.update(1)
   cdef.update(1)
   cprop.update(1)
+  crmk.update(1)
 
 
   set heading(numbering: "1.1.1")
   set text(10pt, font: (body-font, chinese-font), fallback: true)
+  // show raw: it => block(
+  //   // fill: rgb("#1d2433"),
+  //   // inset: 8pt,
+  //   // radius: 5pt,
+  //   text(fill: rgb("#a2aabc"), it)
+  // )
 
   set par(justify: true)
   set page(
@@ -226,34 +245,6 @@ font: spec-font, weight: "bold")[
     pagebreak()
   }
 
-  /**
-  * Programming Language Syntax Highlight
-  */
-  show raw.where(lang: "promela"): it => {
-    let keywords = (
-      "proctype", "chan", "of", "do", "od",
-      "typedef", "byte", "int", "inline",
-      "active", "bit", "bool", "short", "unsigned",
-      "pid", "mtype", "break", "skip", "else", "goto"
-      ).join("|")
-
-      let functions = (
-        "printf",
-      ).join("|")
-
-      let wrap_str(ks) = "\b(" + ks + ")\b"
-
-      show regex(wrap_str(keywords)): set text(blue)
-      show regex(wrap_str(functions)): set text(blue)
-      show regex("\"(.*?)\""): set text(green)
-      show regex("/\*(.*?)\*/"): set text(gray)
-      show regex("//(.*?)\n"): set text(gray)
-
-      block()[
-        #it.text
-      ]
-  }
-
   // Display inline code in a small box
   // that retains the correct baseline.
   show raw.where(block: false): box.with(
@@ -263,25 +254,17 @@ font: spec-font, weight: "bold")[
     radius: 2pt,
   )
 
+  set raw(theme: "kanagawa.tmTheme")
   // Display block code in a larger block
   // with more padding.
-  show raw.where(block: true): block.with(
-    fill: luma(240),
-    inset: 10pt,
-    radius: 4pt,
-    width: 100%
+  show raw.where(block: true): it => block(
+    // fill: luma(240),
+    fill: rgb("#1d2433"),
+    inset: 8pt,
+    radius: 5pt,
+    width: 100%,
+    text(fill: rgb("#a2aabc"), it)
   )
-
-  // show raw.where(block: true): it => { set par(justify: false); grid(
-    //   columns: (100%, 100%),
-    //   column-gutter: -100%,
-    //   block(width: 100%, inset: 1em, for (i, line) in it.text.split("\n").enumerate() {
-      //       box(width: 0pt, align(right, str(i + 1) + h(2em)))
-  //       hide(line)
-  //       linebreak()
-  //     }),
-  //   block(radius: 1em, fill: luma(246), width: 100%, inset: 1em, it),
-  // )}
 
   /**
   * Emph and strong
