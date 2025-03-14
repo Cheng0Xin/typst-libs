@@ -17,7 +17,7 @@
 * Fonts
 * */
 #let section-font = "Latin Modern Roman"
-#let body-font = "JetBrainsMono Nerd Font Propo"
+#let body-font = "JetBrainsMono NFP"
 #let spec-font = "DejaVuSansM Nerd Font Propo"
 // #let chinese-font = "Adobe Heiti Std"
 // #let chinese-font = "Source Han Serif SC"
