@@ -18,8 +18,9 @@
 * */
 #let section-font = "Latin Modern Roman"
 #let spec-font = "DejaVuSansM Nerd Font Propo"
-// #let body-font = "JetBrainsMono NFP"
-// #let chinese-font = "Adobe Heiti Std"
+#let body-font = "libertinus serif"
+#let chinese-font = "LXGW WenKai Mono"
+// #let body-font = "CaskaydiaMono NFP"
 // #let chinese-font = "Source Han Serif SC"
 // #let chinese-font = "Noto Sans SC"
 // #let chinese-font = "Maple Mono NF CN"
@@ -174,7 +175,7 @@ font: spec-font, weight: "bold")[
 
 
   set heading(numbering: "1.1.1")
-  // set text(10pt, font: (body-font, chinese-font), fallback: true)
+  set text(10pt, font: (body-font, chinese-font), fallback: true)
   set text(10pt, fallback: true)
   // show raw: it => block(
   //   // fill: rgb("#1d2433"),
