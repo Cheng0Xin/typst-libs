@@ -16,7 +16,8 @@
 /**
 * Fonts
 * */
-#let section-font = "Latin Modern Roman"
+// #let section-font = "Latin Modern Roman"
+#let section-font = "Libertinus Serif"
 #let spec-font = "DejaVuSansM Nerd Font Propo"
 #let body-font = "libertinus serif"
 #let chinese-font = "LXGW WenKai Mono"
@@ -157,9 +158,9 @@ font: spec-font, weight: "bold")[
 /**
 * For showing paragraph
 */
-#let parat(name) = align(left)[
-  #text(weight: "bold", fill: rgb("#7A003F"), size: 11pt)[
-    #sym.square #name
+#let parat(name) = align(center)[
+  #text(weight: "bold", fill: navy, size: 13pt)[
+    #sym.dagger #name
   ]
 ]
 
