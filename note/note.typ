@@ -160,7 +160,7 @@ font: spec-font, weight: "bold")[
 */
 #let parat(name) = align(center)[
   #text(weight: "bold", fill: navy, size: 13pt)[
-    #sym.dagger #name
+    #sym.maltese #name
   ]
 ]
 
