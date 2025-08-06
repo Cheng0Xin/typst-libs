@@ -174,6 +174,8 @@ font: spec-font, weight: "bold")[
   cprop.update(1)
   crmk.update(1)
 
+  show link: it => underline(text(fill: maroon)[#it])
+  show ref: it => underline(text(fill: olive)[#it])
 
   set heading(numbering: "1.1.1")
   set text(10pt, font: (body-font, chinese-font), fallback: true)
