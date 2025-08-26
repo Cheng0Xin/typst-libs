@@ -12,6 +12,7 @@
 #let cdef = counter("Definition")
 #let cprop = counter("Proposition")
 #let crmk = counter("Remark")
+#let cexp = counter("Example")
 
 /**
 * Fonts
@@ -115,14 +116,25 @@ font: spec-font, weight: "bold")[
   name: name,
   color: rgb("#E493B3"),
   cate: "Remark",
-  supplement: "Remark",
+  supplement: "Rmk.",
   refs: refs,
   body
 )
 
+#let example(name: none, refs: none, body) = thbox(
+  name: name,
+  color: rgb("#9fc7c9"),
+  cate: "Example",
+  supplement: "Exm.",
+  refs: refs,
+  body
+)
+
+
 #let rdef(l) = ref(l, supplement: text(fill: maroon)[Def.])
 #let rthm(l) = ref(l, supplement: text(fill: maroon)[Thm.])
 #let rprop(l) = ref(l, supplement: text(fill: maroon)[Prop.])
+#let rexp(l) = ref(l, supplement: text(fill: maroon)[Exm.])
 
 /**
 * Showing link with hyperlink
