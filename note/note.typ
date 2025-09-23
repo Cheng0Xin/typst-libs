@@ -20,7 +20,7 @@
 // #let section-font = "Latin Modern Roman"
 #let section-font = "Libertinus Serif"
 #let spec-font = "DejaVuSansM Nerd Font Propo"
-#let body-font = "libertinus serif"
+#let body-font = "Fast_Serif"
 #let chinese-font = "LXGW WenKai Mono"
 // #let body-font = "CaskaydiaMono NFP"
 // #let chinese-font = "Source Han Serif SC"
