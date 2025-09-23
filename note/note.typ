@@ -189,6 +189,7 @@ font: spec-font, weight: "bold")[
   show link: it => underline(text(fill: maroon)[#it])
   show ref: it => underline(text(fill: olive)[#it])
 
+  set strike(stroke: 2pt+black)
   set heading(numbering: "1.1.1")
   set text(10pt, font: (body-font, chinese-font), fallback: true)
   set text(10pt, fallback: true)
