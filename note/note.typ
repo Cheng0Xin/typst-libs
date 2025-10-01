@@ -153,12 +153,6 @@ font: spec-font, weight: "bold")[
   #body
 ]
 
-/**
-* For shoing quota
-*/
-#let quota(body) = block(fill: gray, inset: 10pt, width: 100%, stroke: black)[
-  #it(body)
-]
 
 /**
 * Commenting
@@ -188,6 +182,11 @@ font: spec-font, weight: "bold")[
 
   show link: it => underline(text(fill: maroon)[#it])
   show ref: it => underline(text(fill: olive)[#it])
+
+// #let quota(body) = block(fill: gray, inset: 10pt, width: 100%, stroke: black)[
+//   #it(body)
+// ]
+  set quote(block: true)
 
   set strike(stroke: 2pt+black)
   set heading(numbering: "1.1.1")
