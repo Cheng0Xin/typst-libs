@@ -275,8 +275,9 @@ font: spec-font, weight: "bold")[
   // Display block code in a larger block
   // with more padding.
   show raw.where(block: true): it => block(
-    // fill: luma(240),
-    fill: rgb("#1d2433"),
+    // fill: luma(300),
+    stroke: luma(100),
+    // fill: rgb("#1d2433"),
     inset: 8pt,
     radius: 5pt,
     width: 100%,
